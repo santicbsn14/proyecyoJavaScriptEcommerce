@@ -5,9 +5,9 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-const totalCarrito = localStorage.getItem("totalCarrito")
-document.querySelector(".totalCarrito").innerHTML= totalCarrito ;
-let carrito = [];
+const elementosCarrito= JSON.parse(localStorage.getItem("carrito"))
+let carrito = elementosCarrito;
+document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
 let productos = [
     {id: 1, title: "Almendras", price: 500},
     {id: 2, title: "Nueces", price: 700},
@@ -45,8 +45,9 @@ productos.forEach((producto)=>{
     document.getElementById(idButton).addEventListener("click", () => {
         carrito.push(producto);
         console.log(carrito);
-        const precioTotal = carrito.reduce((acumulador,carrito)=> acumulador + producto.price, 0)
-        localStorage.setItem("totalCarrito" , carrito.length)
-        document.querySelector(".totalCarrito").innerHTML=carrito.length;
+        localStorage.setItem("carrito" , JSON.stringify(carrito))
+        // const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)//
+        // localStorage.setItem("totalCarrito" , carrito.length);
+        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
     })  
 });
