@@ -5,7 +5,7 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
-const elementosCarrito= JSON.parse(localStorage.getItem("carrito"))
+const elementosCarrito= JSON.parse(localStorage.getItem("carrito")) ??[];
 let carrito = elementosCarrito;
 document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
 let productos = [
@@ -14,11 +14,18 @@ let productos = [
     {id: 3, title: "Castañas", price: 400},
     {id: 4, title: "Pasta de mani", price: 350}
 ];
+// MENU DE NAVEGACION DINAMICO //
+const categorias = ["FrutosSecos" , "Cereales", "Lacteos", "Yuyos"];
+for (let categoria = 0; categoria < categorias.length; categoria++){
+    document.querySelector("#navegacionCategorias").innerHTML=` <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">${categorias[categoria]}</a>
+    </li>`
+}
 // CARDS DINAMICAS
 for (producto of productos){
     const idButton = `add-card${producto.id}`
     let cards = document.createElement("div");
-    cards.innerHTML =` <div class= "col mb-5"> <div class="card h-100">
+    cards.innerHTML +=` <div class= "col mb-5"> <div class="card h-100">
     <!-- Product image-->
     <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" />
     <!-- Product details-->
@@ -34,8 +41,6 @@ for (producto of productos){
     <!-- Product actions-->
     <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-    </div>
-    </div> 
     </div>`
     document.querySelector(".row-cols-2").appendChild(cards)
     }
