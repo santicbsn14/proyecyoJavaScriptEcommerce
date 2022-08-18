@@ -11,15 +11,16 @@ document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
 let productos = [
     {id: 1, title: "Almendras", price: 500},
     {id: 2, title: "Nueces", price: 700},
-    {id: 3, title: "Castañas", price: 400},
+    {id: 3, title: "Castañas", price: 400, img:"./Imagenes/castañasdecaju.jpg"},
     {id: 4, title: "Pasta de mani", price: 350}
 ];
 // MENU DE NAVEGACION DINAMICO //
-const categorias = ["FrutosSecos" , "Cereales", "Lacteos", "Yuyos"];
+const categorias = ["FRUTOS SECOS" , "CEREALES", "LACTEOS"];
 for (let categoria = 0; categoria < categorias.length; categoria++){
-    document.querySelector("#navegacionCategorias").innerHTML=` <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">${categorias[categoria]}</a>
-    </li>`
+    let menus = document.createElement("ul")
+    menus.classList.add("dropdown-menu");
+    menus.innerHTML+=` <li><a class="dropdown-item" href="#!">${categorias[categoria]}</a></li>`
+    document.querySelector(".navegacionCategorias").appendChild(menus)
 }
 // CARDS DINAMICAS
 for (producto of productos){
