@@ -1,0 +1,8 @@
+[
+    {"id": 1, "title": "Almendras", "price": 500, "img":"https://www.pequerecetas.com/wp-content/uploads/2010/11/propiedades-de-las-almendras-660x441.jpg.webp", "category": "frutosSecos", "cantidad":0},
+    {"id": 2, "title": "Nueces", "price": 700,"img":"https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/01/04/16413064087771.jpg",  "category": "frutosSecos", "cantidad":0},
+    {"id": 4, "title": "Pasta de mani artesanal", "price": 538,"img":"https://cloudfront-us-east-1.images.arcpublishing.com/infobae/FMEHAHM6ZZBIHK2OH5EPVHJQIE.jpg",  "category": "untables","cantidad": 0},
+    {"id": 5, "title": "Harina de almendras", "price": 675, "img":"https://www.hogarmania.com/archivos/202101/harina-de-almendras-beneficios-y-como-se-hace-668x400x80xX-1.jpg",  "category": "harinas", "cantidad":0},
+    {"id": 7, "title": "Harina de algarroba", "price": 551, "img":"https://www.recetasingluten.com/wp-content/uploads/2021/11/harina-de-algarroba-1-1024x683.png", "category": "harinas", "cantidad": 0 },
+    {"id":8, "title":"Semillas de zapallo", "price": 200, "img":"https://i.blogs.es/a30817/pipas2/840_560.jpg", "category":"semillas", "cantidad":0}
+]

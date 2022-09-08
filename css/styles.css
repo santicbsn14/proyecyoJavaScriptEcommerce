@@ -13,7 +13,10 @@
  /* p{
   color: white;
  } */
+p{
+  color: white;
 
+}
  .botonformular{
   background-color: brown;
  }

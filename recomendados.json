@@ -1,0 +1,8 @@
+[
+        {"id": 19, "title": "Mani Japones", "price": 251,"img":"https://saboresandinos.com/wp-content/uploads/2021/07/460-Mani-Japones-crocante-2-cuadrada.jpg",  "category": "frutosSecos"},
+        {"id": 23, "title": "Mermelada de arandones 'Beepure'", "price": 470,"img":"https://www.almacencamposverdes.com.ar/wp-content/uploads/2019/04/mermelada.png",  "category": "untables"},
+        {"id": 94, "title": "Bebida de  coco", "price": 753,"img":"https://s.yimg.com/ny/api/res/1.2/hnQAvJpIzD3pAmWUwvdq6w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://s.yimg.com/uu/api/res/1.2/WEKDp170gxM_hsSerpPm8w--~B/aD00MDA7dz02MDA7YXBwaWQ9eXRhY2h5b24-/http://media.zenfs.com/en/homerun/feed_manager_auto_publish_494/e6444ee38e59ec23773e6684ad93178f",  "category": "bebidas"},
+        {"id": 89, "title": "Pan de masa madre", "price": 858, "img":"https://www.recetasderechupete.com/wp-content/uploads/2020/05/Pan-casero-pueblo-1.jpg", "category": "pan"},
+        {"id":33, "title":"Bayas de goji", "price": 372, "img":"https://t1.uc.ltmcdn.com/es/posts/7/7/8/como_hacer_una_infusion_de_bayas_de_goji_33877_paso_1_600.jpg",  "category":"china"},
+        {"id":27, "title":"Pan Integral con semillas", "price": 351,"img":"https://mandolina.co/wp-content/uploads/2020/11/Caseras-Pan.jpg.webp",  "category":"pan"}
+]

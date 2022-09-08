@@ -18,11 +18,15 @@ let productos = [
     {id: 7, title: "Harina de algarroba", price: 551, img:"https://www.recetasingluten.com/wp-content/uploads/2021/11/harina-de-algarroba-1-1024x683.png", category: "harinas"},
     {id:8, title:"Semillas de zapallo", price: 200, img:"https://i.blogs.es/a30817/pipas2/840_560.jpg", category:"semillas"},
     {id:9, title:"Semillas de sesamo blanco", price: 360, img:"https://cdnx.jumpseller.com/espesales/image/9534282/resize/480/480?1661180543", category:"semillas"},
-    {id:10, title:"Semillas de lino", price: 402, img:"https://www.mentta.com/blog/wp-content/uploads/2022/02/semillas-de-lino-kan-1200x630@abc-768x403.jpg", category:"semillas"}
-
+    {id:10, title:"Semillas de lino", price: 402, img:"https://www.mentta.com/blog/wp-content/uploads/2022/02/semillas-de-lino-kan-1200x630@abc-768x403.jpg", category:"semillas"},
+    {id: 19, title: "Mani Japones", price: 251,img:"https://saboresandinos.com/wp-content/uploads/2021/07/460-Mani-Japones-crocante-2-cuadrada.jpg",  category: "frutosSecos"},
+    {id: 23, title: "Mermelada de arandones 'Beepure'", price: 470,img:"https://www.almacencamposverdes.com.ar/wp-content/uploads/2019/04/mermelada.png",  category: "untables"},
+    {id: 94, title: "Bebida de  coco", price: 753,img:"https://s.yimg.com/ny/api/res/1.2/hnQAvJpIzD3pAmWUwvdq6w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://s.yimg.com/uu/api/res/1.2/WEKDp170gxM_hsSerpPm8w--~B/aD00MDA7dz02MDA7YXBwaWQ9eXRhY2h5b24-/http://media.zenfs.com/en/homerun/feed_manager_auto_publish_494/e6444ee38e59ec23773e6684ad93178f",  "category": "bebidas"},
+    {id: 89, title: "Pan de masa madre", price: 858, img:"https://www.recetasderechupete.com/wp-content/uploads/2020/05/Pan-casero-pueblo-1.jpg", category: "pan"},
+    {id:33, title:"Bayas de goji", price: 372, img:"https://t1.uc.ltmcdn.com/es/posts/7/7/8/como_hacer_una_infusion_de_bayas_de_goji_33877_paso_1_600.jpg",  category:"china"},
+    {id:27, title:"Pan Integral con semillas", price: 351,img:"https://mandolina.co/wp-content/uploads/2020/11/Caseras-Pan.jpg.webp",  category:"pan"}
 ];
 // MENU DE NAVEGACION DINAMICO //
-const categorias = ["FRUTOS SECOS" , "CEREALES", "LACTEOS"];
 let menus = document.createElement("ul")
 menus.classList.add("dropdown-menu");
 menus.setAttribute("aria-labelledby", "navbarDropdown")
@@ -33,11 +37,11 @@ document.querySelector(".navegacionCategorias").appendChild(menus)
 // FILTRAR PRODUCTOS POR CATEGORIA
 // INICIO
 function filtrarproductosporcategoria(category) {
-    document.querySelector(".row-cols-2").innerHTML="";
+    document.querySelector("#main").innerHTML="";
     const productosfiltrados = productos.filter((producto)=> producto.category === category)
     productosfiltrados.forEach((producto)=> {
-        const idButton = `add-card${producto.id}`
-        document.querySelector(".row-cols-2").innerHTML+=` <div class= "col mb-5"> <div class="card h-100">
+        const idbutton = `add-card${producto.id}`
+        document.querySelector("#filtrados").innerHTML+=` <div class= "col mb-5"> <div class="card h-100">
         <!-- Product image-->
         <img class="card-img-top" src=${producto.img} />
         <!-- Product details-->
@@ -50,46 +54,130 @@ function filtrarproductosporcategoria(category) {
         
         <!-- Product actions-->
         <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            <div class="text-center"><a id="${idbutton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
         </div>
         </div></div>`
     })
 }
-// CARDS DINAMICAS
-for (producto of productos){
-    const idButton = `add-card${producto.id}`
-    let cards = document.createElement("div");
-    cards.innerHTML +=` <div class= "col mb-5"> <div class="card h-100">
-    <!-- Product image-->
-    <img class="card-img-top" src=${producto.img} />
-    <!-- Product details-->
-    <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 class="fw-bolder">${producto.title}</h5>
-            <!-- Product price-->
-           $${producto.price}
-        </div>
-    </div>
+//CARDS DINAMICAS
+// for (producto of productos){
+//     const idButton = `add-card${producto.id}`
+//     let cards = document.createElement("div");
+//     cards.innerHTML +=` <div class= "col mb-5"> <div class="card h-100">
+//     <!-- Product image-->
+//     <img class="card-img-top" src=${producto.img} />
+//     <!-- Product details-->
+//     <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
+//         <div class="text-center">
+//             <!-- Product name-->
+//             <h5 class="fw-bolder">${producto.title}</h5>
+//             <!-- Product price-->
+//            $${producto.price}
+//         </div>
+//     </div>
     
-    <!-- Product actions-->
-    <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+//     <!-- Product actions-->
+//     <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+//         <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+//     </div>
+//     </div> </div>`
+//     document.querySelector(".row-cols-2").appendChild(cards)
+//     }
+const mostrarCarrito = ()=>{
+    const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)
+    
+    carrito.forEach((productoagregado)=>{
+    document.querySelector(".modal-body").innerHTML+=`<section class="container productoagregado">
+    <div class="row">
+    <div class="col-lg-3">${productoagregado.id}
     </div>
-    </div> </div>`
-    document.querySelector(".row-cols-2").appendChild(cards)
-    }
-
-//  AGREGAR PRODUCTOS AL CARRITO
-productos.forEach((producto)=>{
-    const idButton = `add-card${producto.id}`
-    document.getElementById(idButton).addEventListener("click", () => {
-        carrito.push(producto);
-        console.log(carrito);
-        localStorage.setItem("carrito" , JSON.stringify(carrito))
-        // const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)//
-        // localStorage.setItem("totalCarrito" , carrito.length);
-        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+    <div class="col-lg-3"><img class="card-img-top"  src="${productoagregado.img}"/>
+    </div>
+    <div class="col-lg-3">${productoagregado.title}
+    </div>
+    <div class="col-lg-3">$${productoagregado.price}
+    </div>
+    <button class="botonEliminar btn btn-danger btn-small " id="botonEliminar" onclick="eliminarProducto(${productoagregado.id})"> <i class="fa-solid fa-trash"></i></button>
+    <hr class="dropdown-divider">
+    </div></section>
+    `
+    document.querySelector(".preciototal2").innerHTML=`<strong>TOTAL:$${precioTotal}</strong>`
+})
+}
+//ELIMINAR PRODUCTOS
+function eliminarProducto(idDelProducto) {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
+    const eliminarDelCarrito = carrito.findIndex((borrar) => borrar.id === idDelProducto)
+    carrito.splice(eliminarDelCarrito, 1)
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    window.location.reload();
+    Toastify({
+        text: "Haz eliminado un producto del carrito",
+        duration: 100000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+}
+const btnVaciar = document.getElementById('vaciarCarrito')
+btnVaciar.addEventListener("click", () => {
+    let carrito = [];
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    window.location.reload();
+});
+//CARDS DINAMICAS FAVORITAS DESDE JSON
+function cargarjson(){
+    fetch('favoritos.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        data.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.querySelector(".masVendidos").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" style="width: 225px; height:150px" src=${producto.img} />
+            <!-- Product details-->
+            <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">${producto.title}</h5>
+                    <!-- Product price-->
+                   $${producto.price}
+                </div>
+            </div>
+            
+            <!-- Product actions-->
+            <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            </div>
+            </div> </div>
+            `
+        })
+    })
+}
+cargarjson()
+//  AGREGAR PRODUCTOS FAVORITOS AL CARRITO
+function cargarproductosjsonalcarrito(){
+    fetch('favoritos.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        data.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.getElementById(rogelio).addEventListener("click",() =>{
+                carrito.push(producto);
+                console.log(carrito);
+                localStorage.setItem("carrito" , JSON.stringify(carrito))
+                document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
         Toastify({
             text: "¡Haz agregado un producto al carrito!",
             duration: 3000,
@@ -104,122 +192,141 @@ productos.forEach((producto)=>{
             },
             onClick: function(){} // Callback after click
           })
-        .showToast();
-    })  
-});
-//PRODUCTOS FILTRADOS EN CARRUSEL
-const frutossecosfiltrados = productos.filter((producto)=> producto.category === "frutosSecos")
-frutossecosfiltrados.forEach((producto)=>{
-    const idButton = `add-card${producto.title}`
-    document.querySelector(".frutosSequitos").innerHTML+=`<div class="col mb-5">
-    <div class="card h-100 ">
-    <!-- Product image-->
-    <img class="card-img-top" src=${producto.img} />
-    <!-- Product details-->
-    <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 class="fw-bolder">${producto.title}</h5>
-            <!-- Product price-->
-           ${producto.price}
-        </div>
-    </div>
-    
-    <!-- Product actions-->
-    <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a id="${idButton}" data-id="${producto.title}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-    </div> </div></div>`
-;
-})
-const harinasfiltradas = productos.filter((producto)=> producto.category === "harinas")
-harinasfiltradas.forEach((producto)=>{
-    const idButton = `add-card-harinas-${producto.id}`
-    document.querySelector(".harinas").innerHTML+=`<div class="col mb-5">
-    <div class="card h-100 ">
-    <!-- Product image-->
-    <img class="card-img-top" src=${producto.img} />
-    <!-- Product details-->
-    <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 class="fw-bolder">${producto.title}</h5>
-            <!-- Product price-->
-           ${producto.price}
-        </div>
-    </div>
-    
-    <!-- Product actions-->
-    <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-    </div> </div></div>`
-;
-})
-const semillasfiltradas = productos.filter((producto)=> producto.category === "semillas")
-semillasfiltradas.forEach((producto)=>{
-    const idButton = `add-card${producto.title}`
-    document.querySelector(".semillas").innerHTML+=`<div class="col mb-5">
-    <div class="card h-100 ">
-    <!-- Product image-->
-    <img class="card-img-top" src=${producto.img} />
-    <!-- Product details-->
-    <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 class="fw-bolder">${producto.title}</h5>
-            <!-- Product price-->
-           ${producto.price}
-        </div>
-    </div>
-    
-    <!-- Product actions-->
-    <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-        <div class="text-center"><a id="${idButton}" data-id="${producto.title}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-    </div> </div></div>`
-;
-})
-//AGREGAR PRODUCTOS FILTRADOS DE FRUTOS SECOS AL CARRITO
-productos.forEach((producto)=>{
-    const idButton = `add-card${producto.title}`
-        document.getElementById(idButton).addEventListener("click", () => {
-            carrito.push(producto);
-            console.log(carrito);
-            localStorage.setItem("carrito" , JSON.stringify(carrito))
-            // const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)//
-            // localStorage.setItem("totalCarrito" , carrito.length);
-            document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
-        })  
-    });
-//AGREGAR PRODUCTOS FILTRADOS DE HARINAS AL CARRITO
-//  AGREGAR PRODUCTOS AL CARRITO
-productos.forEach((producto)=>{
-    const idButton = `add-card-harinas-${producto.id}`
-    document.getElementById(idButton).addEventListener("click", () => {
-        carrito.push(producto);
-        console.log(carrito);
-        localStorage.setItem("carrito" , JSON.stringify(carrito))
-        // const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)//
-        // localStorage.setItem("totalCarrito" , carrito.length);
-        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
-    })  
-});
-//PROBANDO CARDS ABIERTAS
-// function verproductos(){
-//     document.querySelector(".row-cols-2").innerHTML="";
-//     document.querySelector(".row-cols-2").innerHTML="
-//     ";
-// PROBANDO TOASTIFY
-Toastify({
-    text: "This is a toast",
-    duration: 3000,
-    destination: "https://github.com/apvarun/toastify-js",
-    newWindow: true,
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "left", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    },
-    onClick: function(){} // Callback after click
-  })
-.showToast();
+        .showToast(); //TERMINA TOASTIFY
+    })  //CIERRO EVENTO
+            })//FOREACH
+        })//CIERRO ULTIMO THEN
+    }
+cargarproductosjsonalcarrito()
+// CARGAR OFERTAS DE JSON
+function cargarjsonoferta(){
+    fetch('enoferta.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(enoferta){
+        enoferta.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.querySelector(".enoferta").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" style="width: 225px; height:150px" src=${producto.img} />
+            <!-- Product details-->
+            <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">${producto.title}</h5>
+                    <!-- Product price-->
+                   $${producto.price}
+                </div>
+            </div>
+            
+            <!-- Product actions-->
+            <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            </div>
+            </div> </div>
+            `
+        })
+    })
+}
+cargarjsonoferta()
+//  AGREGAR PRODUCTOS ENOFERTA AL CARRITO
+function cargarofertasjsonalcarrito(){
+    fetch('enoferta.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(enoferta){
+        enoferta.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.getElementById(rogelio).addEventListener("click",() =>{
+                carrito.push(producto);
+                console.log(carrito);
+                localStorage.setItem("carrito" , JSON.stringify(carrito))
+                document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+        Toastify({
+            text: "¡Haz agregado un producto al carrito!",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function(){} // Callback after click
+          })
+        .showToast(); //TERMINA TOASTIFY
+    })  //CIERRO EVENTO
+            })//FOREACH
+        })//CIERRO ULTIMO THEN
+    }
+    cargarofertasjsonalcarrito()
+// CARGAR CARDS "RECOMENDADOS"
+function cargarjsonrecomendados(){
+    fetch('recomendados.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(enoferta){
+        enoferta.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.querySelector(".recomendados").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
+            <!-- Product image-->
+            <img class="card-img-top" style="width: 225px; height:150px" src=${producto.img} />
+            <!-- Product details-->
+            <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">${producto.title}</h5>
+                    <!-- Product price-->
+                   $${producto.price}
+                </div>
+            </div>
+            
+            <!-- Product actions-->
+            <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            </div>
+            </div> </div>
+            `
+        })
+    })
+}
+cargarjsonrecomendados()
+// CARGAR RECOMENDADOS AL CARRITO
+function cargarrecomendadosjsonalcarrito(){
+    fetch('recomendados.json')
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(recomendados){
+        recomendados.forEach(function(producto){
+            const rogelio = `add-card${producto.price}`
+            document.getElementById(rogelio).addEventListener("click",() =>{
+                carrito.push(producto);
+                console.log(carrito);
+                localStorage.setItem("carrito" , JSON.stringify(carrito))
+                document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+        Toastify({
+            text: "¡Haz agregado un producto al carrito!",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function(){} // Callback after click
+          })
+        .showToast(); //TERMINA TOASTIFY
+    })  //CIERRO EVENTO
+            })//FOREACH
+        })//CIERRO ULTIMO THEN
+    }
+    cargarrecomendadosjsonalcarrito()
