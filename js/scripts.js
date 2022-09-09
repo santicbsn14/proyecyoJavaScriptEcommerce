@@ -34,14 +34,13 @@ menus.setAttribute("aria-labelledby", "navbarDropdown")
 //     menus.innerHTML+=` <li><a class="dropdown-item" onclick="filtrarproductosporcategoria()" >${categorias[categoria]}</a></li>`
 // }
 document.querySelector(".navegacionCategorias").appendChild(menus)
-// FILTRAR PRODUCTOS POR CATEGORIA
-// INICIO
+
 function filtrarproductosporcategoria(category) {
-    document.querySelector("#main").innerHTML="";
+    document.getElementById("main").innerHTML="";
     const productosfiltrados = productos.filter((producto)=> producto.category === category)
     productosfiltrados.forEach((producto)=> {
         const idbutton = `add-card${producto.id}`
-        document.querySelector("#filtrados").innerHTML+=` <div class= "col mb-5"> <div class="card h-100">
+        document.getElementById("main").innerHTML+=`<section class="py-5"><div class="container px-4 px-lg-5 mt-5"><div  class=" row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 masVendidos row-cols-xl-4 justify-content-center"> <div class= "col mb-5"> <div class="card h-100">
         <!-- Product image-->
         <img class="card-img-top" src=${producto.img} />
         <!-- Product details-->
@@ -54,35 +53,69 @@ function filtrarproductosporcategoria(category) {
         
         <!-- Product actions-->
         <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a id="${idbutton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            <div class="text-center"><a id="${idbutton}"  data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
         </div>
-        </div></div>`
+        </div></div> </div></div> </section>`
     })
 }
-//CARDS DINAMICAS
-// for (producto of productos){
-//     const idButton = `add-card${producto.id}`
-//     let cards = document.createElement("div");
-//     cards.innerHTML +=` <div class= "col mb-5"> <div class="card h-100">
-//     <!-- Product image-->
-//     <img class="card-img-top" src=${producto.img} />
-//     <!-- Product details-->
-//     <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
-//         <div class="text-center">
-//             <!-- Product name-->
-//             <h5 class="fw-bolder">${producto.title}</h5>
-//             <!-- Product price-->
-//            $${producto.price}
-//         </div>
-//     </div>
-    
-//     <!-- Product actions-->
-//     <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-//         <div class="text-center"><a id="${idButton}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-//     </div>
-//     </div> </div>`
-//     document.querySelector(".row-cols-2").appendChild(cards)
-//     }
+function cargarproductosfiltradosalcarrito(){
+productosfiltrados.forEach((producto)=>{
+    const idbutton = `add-card${producto.id}`
+            document.getElementById(idbutton).addEventListener("click",() =>{
+                carrito.push(producto);
+                console.log(carrito);
+                localStorage.setItem("carrito" , JSON.stringify(carrito))
+                document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+        Toastify({
+            text: "¡Haz agregado un producto al carrito!",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function(){} // Callback after click
+          })
+        .showToast(); //TERMINA TOASTIFY
+    })  //CIERRO EVENTO
+            })//FOREACH
+        }
+function verproducto(){
+            fetch('favoritos.json')
+            .then(function(res){
+                return res.json();
+            })
+            .then(function(data){
+                data.forEach(function(producto){
+                    const rogelio = `add-card${producto.price}`
+                    document.getElementById("verproducto").innerHTML=`<section class="container""> <div class="row">
+                    <!-- Product image-->
+                    <div class="col-lg-6"
+                    <img style="width: 150px; height:100px" src=${producto.img} />
+                    </div>
+                    <!-- Product details-->
+                    <div class="col-lg-3" style="top: 0.5rem; right: 0.5rem">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="text-center">${producto.title}</h5>
+                            <!-- Product price-->
+                           $${producto.price}
+                        </div>
+                    </div>
+                    
+                    <!-- Product actions-->
+                    <div class=" col-lg-12">
+                        <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                    </div>
+                    </div> </section>
+                    `
+                })
+            })
+        }
 const mostrarCarrito = ()=>{
     const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)
     
@@ -104,6 +137,8 @@ const mostrarCarrito = ()=>{
     document.querySelector(".preciototal2").innerHTML=`<strong>TOTAL:$${precioTotal}</strong>`
 })
 }
+// VER PRDOUCTO
+
 //ELIMINAR PRODUCTOS
 function eliminarProducto(idDelProducto) {
     const carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
@@ -157,6 +192,7 @@ function cargarjson(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <button type="button" class="btn btn-primary" onclick="verproducto()" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
             </div>
             </div> </div>
             `
@@ -171,6 +207,7 @@ function cargarproductosjsonalcarrito(){
         return res.json();
     })
     .then(function(data){
+        
         data.forEach(function(producto){
             const rogelio = `add-card${producto.price}`
             document.getElementById(rogelio).addEventListener("click",() =>{
@@ -223,6 +260,7 @@ function cargarjsonoferta(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
             </div>
             </div> </div>
             `
@@ -289,6 +327,7 @@ function cargarjsonrecomendados(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
             </div>
             </div> </div>
             `
