@@ -85,15 +85,11 @@ productosfiltrados.forEach((producto)=>{
     })  //CIERRO EVENTO
             })//FOREACH
         }
-
+//VER PRDOCUTO
 function verproducto(){
-            fetch('favoritos.json')
-            .then(function(res){
-                return res.json();
-            })
-            .then(function(data){
-                data.forEach(function(producto){
+                    const idverproducto =`verproducto-${producto.id}`
                     const rogelio = `add-card${producto.price}`
+        document.getElementById(idverproducto).addEventListener("click",()=>
                     document.getElementById("verproducto").innerHTML=`<section class="container""> <div class="row">
                     <!-- Product image-->
                     <div class="col-lg-6"
@@ -114,10 +110,9 @@ function verproducto(){
                         <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
                     </div>
                     </div> </section>
-                    `
-                })
-            })
-        }
+                    `)
+                }
+// MODAL CARRITO
 const mostrarCarrito = ()=>{
     const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)
     
@@ -132,15 +127,15 @@ const mostrarCarrito = ()=>{
     </div>
     <div class="col-lg-3">$${productoagregado.price}
     </div>
-    <button class="botonEliminar btn btn-danger btn-small " id="botonEliminar" onclick="eliminarProducto(${productoagregado.id})"> <i class="fa-solid fa-trash"></i></button>
+    <div class="col-lg-6"
+    <button class="botonEliminar mx-auto btn btn-danger btn-small " id="botonEliminar" style="width:70px;" onclick="eliminarProducto(${productoagregado.id})"> <i class="fa-solid fa-trash"></i></button>
+    </div>
     <hr class="dropdown-divider">
     </div></section>
     `
     document.querySelector(".preciototal2").innerHTML=`<strong>TOTAL:$${precioTotal}</strong>`
 })
 }
-// VER PRDOUCTO
-
 //ELIMINAR PRODUCTOS
 function eliminarProducto(idDelProducto) {
     const carrito = JSON.parse(localStorage.getItem('carrito')) ?? [];
@@ -178,6 +173,7 @@ function cargarjson(){
     .then(function(data){
         data.forEach(function(producto){
             const rogelio = `add-card${producto.price}`
+            const idverproducto = `ver-producto${producto.id}`
             document.querySelector(".masVendidos").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
             <!-- Product image-->
             <img class="card-img-top" style="width: 225px; height:150px" src=${producto.img} />
@@ -194,7 +190,7 @@ function cargarjson(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-                <button type="button" class="btn btn-primary" onclick="verproducto()" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
+                <div class="mx-auto"><button type="button" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
             </div>
             </div> </div>
             `
@@ -262,7 +258,7 @@ function cargarjsonoferta(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
+                <div class="mx-auto"><button type="button" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
             </div>
             </div> </div>
             `
@@ -327,9 +323,9 @@ function cargarjsonrecomendados(){
             </div>
             
             <!-- Product actions-->
-            <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent ">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button>
+                <div class="mx-auto"><button type="button" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
             </div>
             </div> </div>
             `
