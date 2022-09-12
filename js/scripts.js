@@ -40,7 +40,7 @@ function filtrarproductosporcategoria(category) {
     const productosfiltrados = productos.filter((producto)=> producto.category === category)
     productosfiltrados.forEach((producto)=> {
         const idbutton = `add-card${producto.id}`
-        document.getElementById("main").innerHTML+=`<section class="py-5"><div class="container px-4 px-lg-5 mt-5"><div  class=" row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 masVendidos row-cols-xl-4 justify-content-center"> <div class= "col mb-5"> <div class="card h-100">
+        document.getElementById("main").innerHTML+=`<div class="container "><div  class=" row  masVendidos  justify-content-center">  <div class="col-lg-4 card h-100">
         <!-- Product image-->
         <img class="card-img-top" src=${producto.img} />
         <!-- Product details-->
@@ -53,19 +53,20 @@ function filtrarproductosporcategoria(category) {
         
         <!-- Product actions-->
         <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a id="${idbutton}"  data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            <div class="text-center"><a id="${idbutton}" onclick="cargarproductosfiltradosalcarrito()"  data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
         </div>
-        </div></div> </div></div> </section>`
+        </div></div> </div> `
     })
 }
 function cargarproductosfiltradosalcarrito(){
+    const productosfiltrados = productos.filter((producto)=> producto.category === category)
 productosfiltrados.forEach((producto)=>{
     const idbutton = `add-card${producto.id}`
-            document.getElementById(idbutton).addEventListener("click",() =>{
-                carrito.push(producto);
-                console.log(carrito);
-                localStorage.setItem("carrito" , JSON.stringify(carrito))
-                document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+    document.getElementById(idbutton).addEventListener("click",() =>{
+        carrito.push(producto);
+        console.log(carrito);
+        localStorage.setItem("carrito" , JSON.stringify(carrito))
+        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
         Toastify({
             text: "¡Haz agregado un producto al carrito!",
             duration: 3000,
@@ -84,6 +85,7 @@ productosfiltrados.forEach((producto)=>{
     })  //CIERRO EVENTO
             })//FOREACH
         }
+
 function verproducto(){
             fetch('favoritos.json')
             .then(function(res){
