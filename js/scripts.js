@@ -24,7 +24,8 @@ let productos = [
     {id: 94, title: "Bebida de  coco", price: 753,img:"https://s.yimg.com/ny/api/res/1.2/hnQAvJpIzD3pAmWUwvdq6w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQyNw--/https://s.yimg.com/uu/api/res/1.2/WEKDp170gxM_hsSerpPm8w--~B/aD00MDA7dz02MDA7YXBwaWQ9eXRhY2h5b24-/http://media.zenfs.com/en/homerun/feed_manager_auto_publish_494/e6444ee38e59ec23773e6684ad93178f",  "category": "bebidas"},
     {id: 89, title: "Pan de masa madre", price: 858, img:"https://www.recetasderechupete.com/wp-content/uploads/2020/05/Pan-casero-pueblo-1.jpg", category: "pan"},
     {id:33, title:"Bayas de goji", price: 372, img:"https://t1.uc.ltmcdn.com/es/posts/7/7/8/como_hacer_una_infusion_de_bayas_de_goji_33877_paso_1_600.jpg",  category:"china"},
-    {id:27, title:"Pan Integral con semillas", price: 351,img:"https://mandolina.co/wp-content/uploads/2020/11/Caseras-Pan.jpg.webp",  category:"pan"}
+    {id:27, title:"Pan Integral con semillas", price: 351,img:"https://mandolina.co/wp-content/uploads/2020/11/Caseras-Pan.jpg.webp",  category:"pan"},
+    {id:27, title:"Pan de avena", price: 359,img:"https://okdiario.com/img/2017/04/08/pan-de-avena-al-horno_-una-receta-saludable-para-desayunar-1-655x368.jpg",  category:"pan"}
 ];
 // MENU DE NAVEGACION DINAMICO //
 let menus = document.createElement("ul")
