@@ -1,7 +1,0 @@
-[
-        {"id": 3, "title": "Castañas", "price": 400,"img":"https://cdnx.jumpseller.com/pargua-gourmet/image/17582671/blog-caju.jpg.jpg?1625703244",  "category": "frutosSecos"},
-        {"id": 4, "title": "Pasta de mani 'ManiKIng", "price": 474,"img":"https://d2r9epyceweg5n.cloudfront.net/stores/001/582/890/products/whatsapp-image-2021-03-24-at-21-52-58-61-8feff64a75034f8a4a16167592546279-1024-1024.jpeg",  "category": "untables"},
-        {"id": 6, "title": "Harina de  coco", "price": 553,"img":"https://http2.mlstatic.com/D_NQ_NP_977101-MLA41560217027_042020-O.jpg",  "category": "harinas"},
-        {"id":9, "title":"Semillas de sesamo blanco", "price": 360, "img":"https://cdnx.jumpseller.com/espesales/image/9534282/resize/480/480?1661180543",  "category":"semillas"},
-        {"id":10, "title":"Semillas de lino", "price": 402,"img":"https://www.mentta.com/blog/wp-content/uploads/2022/02/semillas-de-lino-kan-1200x630@abc-768x403.jpg",  "category":"semillas"}
-]

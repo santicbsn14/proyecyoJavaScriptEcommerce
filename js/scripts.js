@@ -37,34 +37,19 @@ document.querySelector(".navegacionCategorias").appendChild(menus)
 
 // const productosfiltrados = productos.filter((producto)=> producto.category === category)
 
-function cargarproductosfiltradosalcarrito(){
+function filtrarproductosporcategoria(category) {
+    document.getElementById("main").innerHTML="";
     const productosfiltrados = productos.filter((producto)=> producto.category === category)
-productosfiltrados.forEach((producto)=>{
-    const idbutton = `filtradas-${producto.id}`
-    document.getElementById(idbutton).addEventListener("click",() =>{
-        carrito.push(producto);
-        console.log(carrito);
-        localStorage.setItem("carrito" , JSON.stringify(carrito))
-        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
-        Toastify({
-            text: "¡Haz agregado un producto al carrito!",
-            duration: 3000,
-            destination: "https://github.com/apvarun/toastify-js",
-            newWindow: true,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "left", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-            onClick: function(){} // Callback after click
-          })
-        .showToast(); //TERMINA TOASTIFY
-    })  //CIERRO EVENTO
-            })//FOREACH
-        }
-//VER PRDOCUTO
+    const iddefiltrado = `${producto.category}-${producto.id}`
+    productosfiltrados.forEach((producto)=> {
+        const idbuttonfiltrados = `add-card${producto.id}`
+                
+    })
+}
+
+
+        
+
 
 function verproducto(idDelProducto) {
     const verproducto= productos.find(producto => producto.id == parseInt(idDelProducto))
@@ -145,14 +130,15 @@ btnVaciar.addEventListener("click", () => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
     window.location.reload();
 });
-// //GENERAR CARDS
 
+// //GENERAR CARDS
 productos.forEach((producto)=>{
     const idbutton1 = `cargarProducto-${producto.id}`
+    const iddefiltrado = `${producto.category}-${producto.id}`
             const idverproducto = `ver-producto${producto.id}`
-            document.querySelector(".cardsdinamicas").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
+            document.querySelector(".cardsdinamicas").innerHTML+=`<div id="${iddefiltrado}"  class= "col mb-5"> <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" style="width: 225px; height:150px" src=${producto.img} />
+            <img class="card-img-top"  src=${producto.img} />
             <!-- Product details-->
             <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
                 <div class="text-center">
@@ -170,6 +156,10 @@ productos.forEach((producto)=>{
             </div>
             </div> </div>
             `
+        document.getElementById("semillas").addEventListener("click",()=>{
+            document.getElementById(iddefiltrado).hide()
+        }
+        )
         })
 
 // CARGAR PRODOUCTOS AL CARRITO
@@ -209,7 +199,7 @@ function cargarjson(){
     })
     .then(function(data){
         data.forEach(function(producto){
-            const rogelio = `add-card${producto.price}`
+            const rogelio = `add-card${producto.id}`
             const idverproducto = `ver-producto${producto.id}`
             document.querySelector(".masVendidos").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
             <!-- Product image-->
@@ -226,7 +216,7 @@ function cargarjson(){
             
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <div class="text-center"><a id="${rogelio}" data-id="${producto.id}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
             </div>
             </div> </div>
             `
@@ -243,7 +233,7 @@ function cargarproductosjsonalcarrito(){
     .then(function(data){
         
         data.forEach(function(producto){
-            const rogelio = `add-card${producto.price}`
+            const rogelio = `add-card${producto.id}`
             document.getElementById(rogelio).addEventListener("click",() =>{
                 carrito.push(producto);
                 console.log(carrito);
