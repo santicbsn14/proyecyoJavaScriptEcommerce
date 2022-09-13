@@ -68,6 +68,7 @@ productosfiltrados.forEach((producto)=>{
 
 function verproducto(idDelProducto) {
     const verproducto= productos.find(producto => producto.id == parseInt(idDelProducto))
+    const idbutton2 = `agregar-producto${verproducto.id}`
     document.getElementById("verproducto").innerHTML=`<section class="container""> <div class="row">
     <!-- Product image-->
     <div class="col-lg-12"><h2 class="text-center">${verproducto.title}</h2></div>
@@ -79,11 +80,32 @@ function verproducto(idDelProducto) {
            <!-- Product price-->
           <h4 class="btn-success text-center"> $${verproducto.price}</h4>
           <p class="mx-1">${verproducto.descripcion} </p>
-
+          <div class="text-center"><a id="${idbutton2}" data-id="${verproducto.id}"   class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
     </div>
-    
     </div> </section>
     `
+//AGREGAR AL CARRITO DESDE EL MODAL
+    document.getElementById(idbutton2).addEventListener("click",() =>{
+        carrito.push(verproducto);
+        console.log(carrito);
+        localStorage.setItem("carrito" , JSON.stringify(carrito))
+        document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+Toastify({
+    text: "¡Haz agregado un producto al carrito!",
+    duration: 3000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "left", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} // Callback after click
+  })
+.showToast(); //TERMINA TOASTIFY
+})  //CIERRO EVENTO
 }
 // MODAL CARRITO
 const mostrarCarrito = ()=>{
@@ -101,7 +123,7 @@ const mostrarCarrito = ()=>{
     <div class="col-lg-3">$${productoagregado.price}
     </div>
     <div class="col-lg-6"
-    <button class="botonEliminar mx-auto btn btn-danger btn-small " id="botonEliminar" style="width:70px;" onclick="eliminarProducto(${productoagregado.id})"> <i class="fa-solid fa-trash"></i></button>
+    <button type="button" class="botonEliminar mx-auto btn btn-danger btn-small " id="botonEliminar" style="width:70px;" onclick="eliminarProducto(${productoagregado.id})"> <i class=" fa-solid fa-2x fa-trash"></i></button>
     </div>
     <hr class="dropdown-divider">
     </div></section>
@@ -116,20 +138,6 @@ function eliminarProducto(idDelProducto) {
     carrito.splice(eliminarDelCarrito, 1)
     localStorage.setItem("carrito", JSON.stringify(carrito));
     window.location.reload();
-    Toastify({
-        text: "Haz eliminado un producto del carrito",
-        duration: 100000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "left", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #00b09b, #96c93d)",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
 }
 const btnVaciar = document.getElementById('vaciarCarrito')
 btnVaciar.addEventListener("click", () => {
@@ -190,7 +198,8 @@ productos.forEach((producto)=>{
         .showToast(); //TERMINA TOASTIFY
     })  //CIERRO EVENTO
             })//FOREACH
-        
+
+
 
 //CARDS DINAMICAS FAVORITAS DESDE JSON
 function cargarjson(){
@@ -218,7 +227,6 @@ function cargarjson(){
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
                 <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
-                <div class="mx-auto"><button type="button" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
             </div>
             </div> </div>
             `
