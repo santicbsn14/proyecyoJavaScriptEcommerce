@@ -61,6 +61,7 @@ function filtrarproductosporcategoria(category) {
         `
     })
 }
+
 //VER PRODUCTO
 function verproducto(idDelProducto) {
     const verproducto= productos.find(producto => producto.id == parseInt(idDelProducto))
@@ -161,7 +162,7 @@ productos.forEach((producto)=>{
             
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a id="${idbutton1}" data-id="${producto.id}"   class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <div class="text-center"><a id="${idbutton1}" data-id="${producto.id}"  onclick="agregaralcarrito(${producto.id})"   class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
                 <div class="mx-auto"><button type="button" id="${idverproducto}"   onclick="verproducto(${producto.id})" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
             </div>
             </div> </div>
@@ -169,11 +170,9 @@ productos.forEach((producto)=>{
         })
 
 // CARGAR PRODOUCTOS AL CARRITO
-
-productos.forEach((producto)=>{
-            const idbutton1 = `cargarProducto-${producto.id}`
-            document.getElementById(idbutton1).addEventListener("click",() =>{
-                carrito.push(producto);
+function agregaralcarrito(idDelProducto){
+    const agregarPRroducto= productos.find(producto => producto.id == parseInt(idDelProducto))
+                carrito.push(agregarPRroducto);
                 console.log(carrito);
                 localStorage.setItem("carrito" , JSON.stringify(carrito))
                 document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
@@ -192,9 +191,8 @@ productos.forEach((producto)=>{
             onClick: function(){} // Callback after click
           })
         .showToast(); //TERMINA TOASTIFY
-    })  //CIERRO EVENTO
-            })//FOREACHgit 
 
+        }
 
 
 //CARDS DINAMICAS FAVORITAS DESDE JSON
