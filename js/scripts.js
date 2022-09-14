@@ -28,27 +28,84 @@ let productos = [
     {id:27, title:"Pan de avena", price: 359,img:"https://okdiario.com/img/2017/04/08/pan-de-avena-al-horno_-una-receta-saludable-para-desayunar-1-655x368.jpg",  category:"pan"}
 ];
 // MENU DE NAVEGACION DINAMICO //
-let menus = document.createElement("ul")
-menus.classList.add("dropdown-menu");
-menus.setAttribute("aria-labelledby", "navbarDropdown")
-// for (let categoria = 0; categoria < categorias.length; categoria++){
-//     menus.innerHTML+=` <li><a class="dropdown-item" onclick="filtrarproductosporcategoria()" >${categorias[categoria]}</a></li>`
-// }
-document.querySelector(".navegacionCategorias").appendChild(menus)
 
-// const productosfiltrados = productos.filter((producto)=> producto.category === category)
+
+// 
 
 function filtrarproductosporcategoria(category) {
-    document.getElementById("main").innerHTML="";
+    document.querySelector(".masVendidos").innerHTML="";
+    document.querySelector(".cardsdinamicas").innerHTML="";
     const productosfiltrados = productos.filter((producto)=> producto.category === category)
-    const iddefiltrado = `${producto.category}-${producto.id}`
     productosfiltrados.forEach((producto)=> {
-        const idbuttonfiltrados = `add-card${producto.id}`
-                
+        const rogelio2 = `agregate${producto.id}`
+        document.querySelector(".cardsdinamicas").innerHTML+=` <div class= "col mb-5"> <div class="card h-100">
+        <!-- Product image-->
+        <img class="card-img-top" src=${producto.img} />
+        <!-- Product details-->
+        <div class=" card-body p-4" style="top: 0.5rem; right: 0.5rem">
+            <div class="text-center">
+                <h5 class="fw-bolder">${producto.title}</h5>
+               ${producto.price}
+            </div>
+        </div>
+        
+        <!-- Product actions-->
+        <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a id="${rogelio2}" data-id="${producto.id}" class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+        </div
+        </div></div>`
+    
+        document.getElementById(rogelio2).addEventListener("click",() =>{
+            carrito.push(producto);
+            console.log(carrito);
+            localStorage.setItem("carrito" , JSON.stringify(carrito))
+            document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+    Toastify({
+        text: "¡Haz agregado un producto al carrito!",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "left", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+        onClick: function(){} // Callback after click
+      })
+    .showToast(); //TERMINA TOASTIFY
+    })  //CIERRO EVENTO
     })
 }
-
-
+//CARGAR PRODUCTOS FILTRADOS AL CARRO
+// function cargarproductosfiltradosalcarrito(){
+//     const productosfiltrados = productos.filter((producto)=> producto.category === category)
+// productosfiltrados.forEach((producto)=>{
+//     const idbutton = `add-card${producto.id}`
+//     document.getElementById(idbutton).addEventListener("click",() =>{
+//         carrito.push(producto);
+//         console.log(carrito);
+//         localStorage.setItem("carrito" , JSON.stringify(carrito))
+//         document.querySelector(".totalCarrito").innerHTML=`${carrito.length}`
+//         Toastify({
+//             text: "¡Haz agregado un producto al carrito!",
+//             duration: 3000,
+//             destination: "https://github.com/apvarun/toastify-js",
+//             newWindow: true,
+//             close: true,
+//             gravity: "top", // `top` or `bottom`
+//             position: "left", // `left`, `center` or `right`
+//             stopOnFocus: true, // Prevents dismissing of toast on hover
+//             style: {
+//               background: "linear-gradient(to right, #00b09b, #96c93d)",
+//             },
+//             onClick: function(){} // Callback after click
+//           })
+//         .showToast(); //TERMINA TOASTIFY
+//     })  //CIERRO EVENTO
+//             })//FOREACH
+//         }
         
 
 
@@ -157,10 +214,6 @@ productos.forEach((producto)=>{
             </div>
             </div> </div>
             `
-        document.getElementById("semillas").addEventListener("click",()=>{
-            document.getElementById(iddefiltrado).hide()
-        }
-        )
         })
 
 // CARGAR PRODOUCTOS AL CARRITO
