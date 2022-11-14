@@ -54,7 +54,7 @@ function filtrarproductosporcategoria(category) {
         
         <!-- Product actions-->
         <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a id="${idbutton1}" data-id="${producto.id}"   class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+            <div class="text-center"><a id="${idbutton1}" data-id="${producto.id}" onclick="agregaralcarrito(${producto.id})"   class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
             <div class="mx-auto"><button type="button" id="${idverproducto}"   onclick="verproducto(${producto.id})" class="btn btn-outline-success mx-4 my-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver Producto</button></div>
         </div>
         </div> </div>
@@ -107,9 +107,10 @@ Toastify({
 // MODAL CARRITO
 const mostrarCarrito = ()=>{
     const precioTotal = carrito.reduce((acumulador,producto)=> acumulador + producto.price, 0)
+    let modalCarrito = ''
     
     carrito.forEach((productoagregado)=>{
-    document.querySelector(".modal-body").innerHTML+=`<section class="container productoagregado">
+    modalCarrito+=`<section class="container productoagregado">
     <div class="row">
     <div class="col-lg-3">${productoagregado.id}
     </div>
@@ -125,6 +126,7 @@ const mostrarCarrito = ()=>{
     <hr class="dropdown-divider">
     </div></section>
     `
+    document.querySelector(".modal-body").innerHTML = modalCarrito;
     document.querySelector(".preciototal2").innerHTML=`<strong>TOTAL:$${precioTotal}</strong>`
 })
 }
@@ -191,7 +193,6 @@ function agregaralcarrito(idDelProducto){
             onClick: function(){} // Callback after click
           })
         .showToast(); //TERMINA TOASTIFY
-
         }
 
 
@@ -203,7 +204,7 @@ function cargarjson(){
     })
     .then(function(data){
         data.forEach(function(producto){
-            const rogelio = `add-card${producto.id}`
+            const rogelio = `add-card${producto.price}`
             const idverproducto = `ver-producto${producto.id}`
             document.querySelector(".masVendidos").innerHTML+=`<div class= "col mb-5"> <div class="card h-100">
             <!-- Product image-->
@@ -220,7 +221,7 @@ function cargarjson(){
             
             <!-- Product actions-->
             <div class=" card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a id="${rogelio}" data-id="${producto.id}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
+                <div class="text-center"><a id="${rogelio}" data-id="${producto.price}"  class="btn btn-outline-dark mt-auto">Agregar al carrito</a></div>
             </div>
             </div> </div>
             `
@@ -237,7 +238,7 @@ function cargarproductosjsonalcarrito(){
     .then(function(data){
         
         data.forEach(function(producto){
-            const rogelio = `add-card${producto.id}`
+            const rogelio = `add-card${producto.price}`
             document.getElementById(rogelio).addEventListener("click",() =>{
                 carrito.push(producto);
                 console.log(carrito);
